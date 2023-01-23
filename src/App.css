@@ -24,7 +24,7 @@ body {
   height: 100vh;
 }
 
-header {
+.header {
   background: #bdc3c7; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to left,
@@ -46,6 +46,12 @@ header {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.test {
+  width: 100%;
+}
+.MuiMenu-paper {
+  background-color: green;
 }
 header ul {
   display: flex;
