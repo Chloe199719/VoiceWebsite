@@ -1,37 +1,107 @@
-import { Menu } from "@mui/icons-material";
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  CssBaseline,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import NavBar from "./NavBar";
-import Title from "./title";
 import AdbIcon from "@mui/icons-material/Adb";
+import { createTheme } from "@mui/material/styles";
+import Content from "./content";
+import AvatarMenu from "./Avatar";
+import { Link } from "react-router-dom";
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#58af0",
+      main: "#0277bd",
+      dark: "#0004c8c",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
+  },
+});
+const resorces = {
+  title: `Resorces`,
+  dropDown: [`Some Stuff`, `Other Stuff`, `MoreStuff`],
+};
 
-export default function Header(props) {
+const profile = {
+  name: "Chloe Pratas",
+  photoUrl:
+    "https://lh3.googleusercontent.com/a/AEdFTp4pu57MCWzSiGkZK8tyXHnXKLvTlpgthcYZcS2Czg=s288-p-rw-no",
+  option: [`Profile`, `Account`, `Dashboard`, `Logout`],
+};
+export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Rad Possum
-          </Typography>
-          {/* <Title /> */}
-          <NavBar />
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" sx={{ p: 2 }}>
+          <CssBaseline />
+          <Toolbar sx={{ display: `flex`, justifyContent: "space-between" }}>
+            <Box sx={{ display: `flex`, alignItems: "center" }}>
+              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+              <Typography
+                variant="h2"
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                <Link href="/"> Rad Possum</Link>
+              </Typography>
+            </Box>
+            <List sx={{ display: `flex` }}>
+              <Content render={resorces} />
+              <ListItem>
+                <ListItemButton>
+                  <ListItemText>
+                    <Typography variant="button">Booking</Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemText>
+                    <Typography noWrap variant="button">
+                      Contact Me
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+              <AvatarMenu data={profile} />
+              {/* <ListItem>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Inbox />
+                  </ListItemIcon>
+                  <ListItemText primary="Inbox" />
+                </ListItemButton>
+              </ListItem> */}
+            </List>
+            {/* <Title /> */}
+            {/* <NavBar /> */}
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </ThemeProvider>
   );
 }

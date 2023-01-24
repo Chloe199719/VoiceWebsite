@@ -3,10 +3,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
-import { Paper } from "@mui/material";
+import { ListItem, ListItemButton, Paper, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 
-function Content() {
+function Content({ render }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const StyledPaper = styled(Paper)(`border-radius: 0;
@@ -16,7 +16,7 @@ function Content() {
   const StyledMenuItem = styled(MenuItem)(
     ` 
       &:hover, &.Mui-focusVisible {
-        background-color: darkBlue
+        background-color: blue
       }`
   );
   const toggleOpen = function (e) {
@@ -28,16 +28,16 @@ function Content() {
   };
 
   return (
-    <div>
-      <div
+    <ListItem>
+      <ListItemButton
         id="demo-positioned-button"
         aria-controls={open ? "demo-positioned-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={toggleOpen}
       >
-        Dashboard
-      </div>
+        <Typography variant="button">{render.title}</Typography>
+      </ListItemButton>
       <StyledPaper>
         <Menu
           sx={{
@@ -59,12 +59,16 @@ function Content() {
           //   horizontal: "left",
           // }}
         >
-          <StyledMenuItem onClick={handleClose}>Profile</StyledMenuItem>
-          <StyledMenuItem onClick={handleClose}>My account</StyledMenuItem>
-          <StyledMenuItem onClick={handleClose}>Logout</StyledMenuItem>
+          {render.dropDown.map((e) => {
+            return (
+              <StyledMenuItem key={e} onClick={handleClose}>
+                {e}
+              </StyledMenuItem>
+            );
+          })}
         </Menu>
       </StyledPaper>
-    </div>
+    </ListItem>
   );
 }
 
