@@ -3,9 +3,15 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import styled from "@emotion/styled";
-import { ListItem, ListItemButton, Paper, Typography } from "@mui/material";
+import {
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { red } from "@mui/material/colors";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function Content({ render }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -37,12 +43,15 @@ function Content({ render }) {
         onClick={toggleOpen}
       >
         <Typography variant="button">{render.title}</Typography>
+
+        <ExpandMoreIcon sx={{ pl: 0.1 }} />
       </ListItemButton>
+
       <StyledPaper>
         <Menu
           sx={{
             "& .MuiMenu-paper": {
-              backgroundColor: "lightblue",
+              backgroundColor: "primary.light",
             },
           }}
           id="demo-positioned-menu"

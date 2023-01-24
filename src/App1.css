@@ -4,4 +4,6 @@ a {
 }
 .imgHero {
   border-radius: 20px;
+  max-width: 100%;
+  max-height: 100%;
 }

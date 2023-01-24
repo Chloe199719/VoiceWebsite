@@ -41,7 +41,7 @@ function AvatarMenu({ data }) {
       <Menu
         sx={{
           "& .MuiMenu-paper": {
-            backgroundColor: "lightblue",
+            backgroundColor: "primary.light",
           },
         }}
         id="avatarMenu"

@@ -16,22 +16,8 @@ import { createTheme } from "@mui/material/styles";
 import Content from "./content";
 import AvatarMenu from "./Avatar";
 import { Link } from "react-router-dom";
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: "#58af0",
-      main: "#0277bd",
-      dark: "#0004c8c",
-      contrastText: "#fff",
-    },
-    secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
-    },
-  },
-});
+import HeadsetIcon from "@mui/icons-material/Headset";
+
 const resorces = {
   title: `Resorces`,
   dropDown: [`Some Stuff`, `Other Stuff`, `MoreStuff`],
@@ -45,50 +31,52 @@ const profile = {
 };
 export default function Header() {
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ p: 2 }}>
-          <CssBaseline />
-          <Toolbar sx={{ display: `flex`, justifyContent: "space-between" }}>
-            <Box sx={{ display: `flex`, alignItems: "center" }}>
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-              <Typography
-                variant="h2"
-                noWrap
-                component="a"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                <Link href="/"> Rad Possum</Link>
-              </Typography>
-            </Box>
-            <List sx={{ display: `flex` }}>
-              <Content render={resorces} />
-              <ListItem>
-                <ListItemButton>
-                  <ListItemText>
-                    <Typography variant="button">Booking</Typography>
-                  </ListItemText>
-                </ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>
-                  <ListItemText>
-                    <Typography noWrap variant="button">
-                      Contact Me
-                    </Typography>
-                  </ListItemText>
-                </ListItemButton>
-              </ListItem>
-              <AvatarMenu data={profile} />
-              {/* <ListItem>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ p: 2 }}>
+        <CssBaseline />
+        <Toolbar sx={{ display: `flex`, justifyContent: "space-between" }}>
+          <Box sx={{ display: `flex`, alignItems: "center" }}>
+            <HeadsetIcon
+              fontSize="large"
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+            <Typography
+              variant="h2"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              <Link href="/"> Rad Possum</Link>
+            </Typography>
+          </Box>
+          <List sx={{ display: `flex` }}>
+            <Content render={resorces} />
+            <ListItem>
+              <ListItemButton>
+                <ListItemText>
+                  <Typography variant="button">Booking</Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemText>
+                  <Typography noWrap variant="button">
+                    Contact Me
+                  </Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <AvatarMenu data={profile} />
+            {/* <ListItem>
                 <ListItemButton>
                   <ListItemIcon>
                     <Inbox />
@@ -96,12 +84,11 @@ export default function Header() {
                   <ListItemText primary="Inbox" />
                 </ListItemButton>
               </ListItem> */}
-            </List>
-            {/* <Title /> */}
-            {/* <NavBar /> */}
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+          </List>
+          {/* <Title /> */}
+          {/* <NavBar /> */}
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
