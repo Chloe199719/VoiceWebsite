@@ -11,8 +11,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import AdbIcon from "@mui/icons-material/Adb";
-import { createTheme } from "@mui/material/styles";
+
 import Content from "./content";
 import AvatarMenu from "./Avatar";
 import { Link } from "react-router-dom";

@@ -9,6 +9,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./modules/main/landing/LandingPage";
+import Index from "./modules/main/landing";
 
 const theme = createTheme({
   palette: {
@@ -33,7 +34,7 @@ function App() {
         <CssBaseline />
         <Header />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Index />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
