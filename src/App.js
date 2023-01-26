@@ -1,14 +1,13 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import React, { Component } from "react";
+import React from "react";
 import "./App1.css";
 import Header from "./modules/header/Header";
-import Main from "./modules/Main";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./modules/main/landing/LandingPage";
+
 import Index from "./modules/main/landing";
 
 const theme = createTheme({
@@ -20,9 +19,9 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
+      light: "#cfcfcf",
+      main: "#9e9e9e",
+      dark: "#707070",
       contrastText: "#000",
     },
   },

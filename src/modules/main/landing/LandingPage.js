@@ -23,7 +23,7 @@ function LandingPage() {
           pr: 10,
         }}
       >
-        <Grid xs={6} sx={{ pr: 1 }}>
+        <Grid item xs={6} sx={{ pr: 1 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 5 }}>
             <Typography variant="h1">
               Start Taking Control Of Your Voice Today
@@ -38,7 +38,7 @@ function LandingPage() {
             </Button>
           </Box>
         </Grid>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <img className="imgHero" src={vocieImg} alt="voice" />
         </Grid>
       </Grid>

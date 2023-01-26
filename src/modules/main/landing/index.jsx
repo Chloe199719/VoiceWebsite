@@ -1,5 +1,6 @@
 import React from "react";
 import Aboutme from "./Aboutme";
+import Faq from "./Faq";
 import LandingPage from "./LandingPage";
 
 function Index() {
@@ -7,6 +8,7 @@ function Index() {
     <>
       <LandingPage />
       <Aboutme />
+      <Faq />
     </>
   );
 }

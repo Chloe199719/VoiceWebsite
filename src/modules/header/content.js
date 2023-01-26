@@ -59,14 +59,14 @@ function Content({ render }) {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          // anchorOrigin={{
-          //   vertical: "top",
-          //   horizontal: "left",
-          // }}
-          // transformOrigin={{
-          //   vertical: "top",
-          //   horizontal: "left",
-          // }}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
         >
           {render.dropDown.map((e) => {
             return (

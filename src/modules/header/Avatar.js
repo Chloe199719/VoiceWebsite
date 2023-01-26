@@ -54,12 +54,12 @@ function AvatarMenu({ data }) {
           horizontal: "center",
         }}
         transformOrigin={{
-          //   vertical: "bottom",
+          vertical: 2,
           horizontal: "center",
         }}
       >
         {data.option.map((i) => {
-          return <MenuItem>{i}</MenuItem>;
+          return <MenuItem key={i}>{i}</MenuItem>;
         })}
       </Menu>
     </ListItem>
