@@ -8,7 +8,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -16,6 +16,7 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
   const [currentUser] = useAuthState(auth);
+  const [faqDb, setFaqDb] = useState();
   const addUserDB = async function (uuid, email, name) {
     await setDoc(doc(db, "users", uuid), {
       email: email,
@@ -40,18 +41,52 @@ export function AuthProvider({ children }) {
   const signoutuser = async function () {
     await signOut(auth);
   };
+
+  // const readDatabase = async function () {
+  //   const QuerySnapshot = await getDocs(collection(db, "faq"))
+  //     .then((e) => {
+  //       let temparr = [];
+  //       e.docs.forEach((e, i) => {
+  //         let tempobj = { ...e.data(), id: e.id };
+  //         temparr.push(tempobj);
+  //       });
+  //       setFaqDb(temparr);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e, `error`);
+  //     });
+
+  // };
   //   useEffect(() => {
   //     const unsub = auth.onAuthStateChanged((User) => {
   //       setCurrentUser(User);
   //     });
   //     return unsub;
   //   }, []);
+  useEffect(() => {
+    const readDatabase = async function () {
+      await getDocs(collection(db, "faq"))
+        .then((e) => {
+          let temparr = [];
+          e.docs.forEach((e, i) => {
+            let tempobj = { ...e.data(), id: e.id };
+            temparr.push(tempobj);
+          });
+          setFaqDb(temparr);
+        })
+        .catch((e) => {
+          console.log(e, `error`);
+        });
+    };
+    readDatabase();
+  }, []);
 
   const value = {
     currentUser,
     signup,
     signin,
     signoutuser,
+    faqDb,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

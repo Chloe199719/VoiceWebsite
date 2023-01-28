@@ -1,14 +1,15 @@
 import {
+  Alert,
   Button,
+  CircularProgress,
   Container,
-  Divider,
   FormControl,
   TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 function SignIn() {
@@ -16,15 +17,32 @@ function SignIn() {
   const passwordRef = useRef(); //Refrence Password Input
   const passwordConfirmRef = useRef(); //Refrence Passoword Confirmation Input
   const Name = useRef(); // Refrence Name Input
-
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
   const { signup } = useAuth(); // Context from Auth Provider
+  let navigate = useNavigate();
   const handleSubmit = async function (e) {
     e.preventDefault();
+    setError(``);
+    setLoading(true);
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setLoading(false);
+      return setError(`Passwords Dont Match`);
+    }
     await signup(
       emailRef.current.value,
       passwordRef.current.value,
       Name.current.value
-    );
+    )
+      .then((e) => {
+        navigate(`/`);
+      })
+      .catch((e) => {
+        setError(`Error Creating Your Account`);
+      })
+      .finally((e) => {
+        setLoading(false);
+      });
   };
   return (
     <Container
@@ -47,10 +65,15 @@ function SignIn() {
           maxWidth: "600px",
           width: "90%",
           p: 10,
+          gap: 2,
         }}
       >
         <Typography variant="h2">Sign Up</Typography>
-        <Divider sx={{ mb: 2, mt: 3 }} />
+        {error ? (
+          <Alert sx={{ width: "90%" }} severity="error">
+            {error}
+          </Alert>
+        ) : null}
         <form onSubmit={handleSubmit}>
           <FormControl
             sx={{
@@ -99,8 +122,20 @@ function SignIn() {
               fullWidth={true}
               required
             />
-            <Button type="submit" variant="contained" fullWidth={true}>
-              Sign UP
+            <Button
+              disabled={loading}
+              type="submit"
+              variant="contained"
+              fullWidth={true}
+            >
+              Sign UP{" "}
+              {loading ? (
+                <CircularProgress
+                  sx={{ ml: 2 }}
+                  size="25px"
+                  color="secondary"
+                />
+              ) : null}
             </Button>
           </FormControl>
         </form>

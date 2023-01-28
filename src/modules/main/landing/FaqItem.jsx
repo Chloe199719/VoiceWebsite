@@ -25,7 +25,7 @@ function FaqItem({ content }) {
         sx={{ display: "flex", flexDirection: "column" }}
       >
         <ListItemButton onClick={handleClick} sx={{ width: "95%", m: 0 }}>
-          <ListItemText primary={content.Q} />{" "}
+          <ListItemText primary={content.question} />{" "}
           <ListItemIcon>{open ? <ExpandLess /> : <ExpandMore />}</ListItemIcon>
         </ListItemButton>
         <Collapse
@@ -35,7 +35,7 @@ function FaqItem({ content }) {
           unmountOnExit
           onClick={handleClick}
         >
-          <Typography>{content.A}</Typography>
+          <Typography>{content.awnser}</Typography>
         </Collapse>
       </ListItem>
     </>

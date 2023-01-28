@@ -15,6 +15,8 @@ import Content from "./content";
 import AvatarMenu from "./Avatar";
 import { Link } from "react-router-dom";
 import HeadsetIcon from "@mui/icons-material/Headset";
+import { useAuth } from "../../contexts/AuthContext";
+import LoginSignup from "./LoginSignup";
 
 const resorces = {
   title: `Resorces`,
@@ -28,6 +30,7 @@ const profile = {
   option: [`Profile`, `Account`, `Dashboard`, `Logout`],
 };
 export default function Header() {
+  const { currentUser } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ p: 2 }}>
@@ -74,7 +77,7 @@ export default function Header() {
                 </ListItemText>
               </ListItemButton>
             </ListItem>
-            <AvatarMenu data={profile} />
+            {currentUser ? <AvatarMenu data={profile} /> : <LoginSignup />}
             {/* <ListItem>
                 <ListItemButton>
                   <ListItemIcon>

@@ -1,10 +1,16 @@
 import { Box, Container, List, Typography } from "@mui/material";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useAuth } from "../../../contexts/AuthContext";
 
 import FaqItem from "./FaqItem";
 
 function Faq() {
+  const { readDatabase, faqDb } = useAuth();
+
+  // useEffect(() => {
+  //   readDatabase();
+  // }, []);
   const tempObjFaq = [
     {
       id: 1,
@@ -79,9 +85,11 @@ function Faq() {
         >
           <Typography>Test </Typography>
         </Collapse> */}
-        {tempObjFaq.map((a) => {
-          return <FaqItem key={a.id} content={a} />;
-        })}
+        {faqDb
+          ? faqDb.map((a) => {
+              return <FaqItem key={a.id} content={a} />;
+            })
+          : null}
       </List>
     </Container>
   );
