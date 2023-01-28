@@ -7,3 +7,14 @@ a {
   max-width: 100%;
   max-height: 100%;
 }
+
+.atext {
+  color: #2979ff;
+  margin-left: 2px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

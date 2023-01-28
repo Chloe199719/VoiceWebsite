@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import React, { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 function AvatarMenu({ data }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -16,9 +17,12 @@ function AvatarMenu({ data }) {
   const toggleOpen = function (e) {
     setAnchorEl(e.currentTarget);
   };
-
+  const { signoutuser, currentUser } = useAuth();
   const handleClose = function (e) {
     setAnchorEl(null);
+  };
+  const logout = function () {
+    signoutuser();
   };
   return (
     <ListItem>
@@ -31,7 +35,7 @@ function AvatarMenu({ data }) {
       >
         <ListItemText>
           <Typography noWrap variant="h6">
-            {data.name}
+            {currentUser ? currentUser.displayName : data.name}
           </Typography>
         </ListItemText>
         <ListItemIcon sx={{ pl: 2 }}>
@@ -59,6 +63,13 @@ function AvatarMenu({ data }) {
         }}
       >
         {data.option.map((i) => {
+          if (i === `Logout`) {
+            return (
+              <MenuItem onClick={logout} key={i}>
+                {i}
+              </MenuItem>
+            );
+          }
           return <MenuItem key={i}>{i}</MenuItem>;
         })}
       </Menu>

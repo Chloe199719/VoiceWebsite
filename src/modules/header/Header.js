@@ -5,7 +5,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  ThemeProvider,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -34,7 +33,7 @@ export default function Header() {
       <AppBar position="static" sx={{ p: 2 }}>
         <CssBaseline />
         <Toolbar sx={{ display: `flex`, justifyContent: "space-between" }}>
-          <Link href="/">
+          <Link to="/">
             <Box sx={{ display: `flex`, alignItems: "center" }}>
               <HeadsetIcon
                 fontSize="large"

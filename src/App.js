@@ -9,6 +9,9 @@ import "@fontsource/roboto/700.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Index from "./modules/main/landing";
+import SignIn from "./modules/Authentication/Signup";
+import Signup from "./modules/Authentication/Signin";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -28,15 +31,19 @@ const theme = createTheme({
 });
 function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Index />} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/signIn" element={<Signup />} />
+            <Route path="/signUp" element={<SignIn />} />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
