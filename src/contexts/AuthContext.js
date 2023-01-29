@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -8,7 +7,14 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -42,6 +48,30 @@ export function AuthProvider({ children }) {
     await signOut(auth);
   };
 
+  const messageLoader = async function (
+    name,
+    email,
+    discID,
+    pronouns,
+    message
+  ) {
+    console.log(`huh`);
+    await addDoc(collection(db, "messages"), {
+      name: name,
+      email: email,
+      discID: discID,
+      pronouns: pronouns,
+      message: message,
+      solved: false,
+      timestamp: serverTimestamp(),
+    })
+      .then((e) => {
+        console.log(e);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   // const readDatabase = async function () {
   //   const QuerySnapshot = await getDocs(collection(db, "faq"))
   //     .then((e) => {
@@ -87,6 +117,7 @@ export function AuthProvider({ children }) {
     signin,
     signoutuser,
     faqDb,
+    messageLoader,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

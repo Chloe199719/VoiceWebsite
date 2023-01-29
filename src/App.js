@@ -12,6 +12,7 @@ import Index from "./modules/main/landing";
 import SignIn from "./modules/Authentication/Signup";
 import Signup from "./modules/Authentication/Signin";
 import { AuthProvider } from "./contexts/AuthContext";
+import ContactMe from "./modules/Contact/ContactMe";
 
 const theme = createTheme({
   palette: {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/signIn" element={<Signup />} />
             <Route path="/signUp" element={<SignIn />} />
+            <Route path="/contactme" element={<ContactMe />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

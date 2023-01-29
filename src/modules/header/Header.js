@@ -69,13 +69,15 @@ export default function Header() {
               </ListItemButton>
             </ListItem>
             <ListItem>
-              <ListItemButton>
-                <ListItemText>
-                  <Typography noWrap variant="button">
-                    Contact Me
-                  </Typography>
-                </ListItemText>
-              </ListItemButton>
+              <Link to="/contactme">
+                <ListItemButton>
+                  <ListItemText>
+                    <Typography noWrap variant="button">
+                      Contact Me
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </Link>
             </ListItem>
             {currentUser ? <AvatarMenu data={profile} /> : <LoginSignup />}
             {/* <ListItem>

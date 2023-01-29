@@ -39,10 +39,7 @@ function AvatarMenu({ data }) {
           </Typography>
         </ListItemText>
         <ListItemIcon sx={{ pl: 2 }}>
-          <Avatar
-            src={currentUser.photoUrl ? currentUser.photoUrl : data.photoUrl}
-            referrerPolicy="no-referrer"
-          />
+          <Avatar src={currentUser.photoUrl} referrerPolicy="no-referrer" />
         </ListItemIcon>
       </ListItemButton>
       <Menu
